@@ -39,4 +39,8 @@ public class Goods {
             joinColumns = @JoinColumn(name = "GOODS_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "GOODS_CATEGORY_ID", referencedColumnName = "ID"))
     private List<GoodsCategory> goodsCategoryList = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "COMMENT_ID", referencedColumnName = "ID")
+    private Comments comment;
 }

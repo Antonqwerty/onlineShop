@@ -1,4 +1,8 @@
 package rest.repository;
 
-public interface CommentsRepository {
+import org.springframework.data.repository.CrudRepository;
+import rest.dao.Comments;
+
+public interface CommentsRepository extends CrudRepository<Comments, Integer> {
+
 }

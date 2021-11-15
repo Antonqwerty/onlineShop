@@ -2,11 +2,9 @@ package rest.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rest.constant.Currency;
+import rest.dao.Goods;
 import rest.dto.GoodsListWrapperDto;
 import rest.service.GoodsService;
 
@@ -22,7 +20,8 @@ public class GoodsController {
     }
 
     @GetMapping("/{category}/{currency}")
-    public GoodsListWrapperDto getAllGoods(@RequestParam(name = "currency") String currency) {
+    public GoodsListWrapperDto getAllGoods(@PathVariable(name = "category") String category,
+                                           @PathVariable(name = "currency") String currency) {
 
         log.info("get all goods by category");
         if (!Currency.currencyList.containsKey(currency)) {
@@ -30,7 +29,7 @@ public class GoodsController {
             log.debug("Changing currency to RUB");
             currency = "Rub";
         }
-        return goodsService.getAllGoods();
+        return goodsService.getAllGoods(category, currency);
     }
 }
 

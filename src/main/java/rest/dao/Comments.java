@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "COMMENTS")
@@ -30,4 +32,6 @@ public class Comments {
     @Size(min = 0, max = 5, message = "0 to 5")
     private Integer userEstimation;
 
+    @OneToMany(mappedBy = "comment")
+    private List<Goods> goods = new ArrayList<>();
 }
