@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +18,14 @@ public class Goods {
     @Id
     @GeneratedValue
     @Column(name = "ID")
-    private int Integer;
+    private Integer id;
 
     @Column(name = "NAME")
+    @Size(max = 80, message = "Maximum is 80 characters long")
     private String name;
 
-    //TODO Ограничение в 255 значений
     @Column(name = "DESCRIPTION")
+    @Size(max = 255, message = "Maximum is 255 characters long")
     private String description;
 
     @Column(name = "COUNT")
